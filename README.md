@@ -6,10 +6,7 @@ Currency Master est une application web simple et intuitive qui permet de conver
 - [Fonctionnalités](#fonctionnalités)
 - [Technologies Utilisées](#technologies-utilisées)
 - [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Contributions](#contributions)
-- [Auteurs](#auteurs)
-- [Licence](#licence)
+- [Auteur](#auteur)
 
 ## Fonctionnalités
 
@@ -24,3 +21,9 @@ Currency Master est une application web simple et intuitive qui permet de conver
 - **CSS** : Styles et mise en page.
 - **JavaScript** : Logique de l'application et gestion des données.
 - **API externe** : [ExchangeRate-API](https://www.exchangerate-api.com/) pour obtenir les taux de change.
+
+## Installation
+
+1. Clonez le dépôt sur votre machine locale :
+   ```bash
+   git clone https://github.com/votre-utilisateur/currency-master.git
