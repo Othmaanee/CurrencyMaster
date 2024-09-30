@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const apiUrl = `https://api.exchangerate-api.com/v4/latest/USD`;
-
+    const apiKey = '337159cefa16dbefb4277093'; 
+    const apiUrl = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            const currencies = Object.keys(data.rates);  // Récupère toutes les devises disponibles
+            const currencies = Object.keys(data.conversion_rates); 
 
             const fromCurrencySelect = document.getElementById('fromCurrency');
             const toCurrencySelect = document.getElementById('toCurrency');
@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Écouteur d'événement pour le bouton Convertir
 document.getElementById('convertButton').addEventListener('click', convertCurrency);
 
+const apiKey = '337159cefa16dbefb4277093';
+
 function convertCurrency() {
     const amount = document.getElementById('amount').value;
     const fromCurrency = document.getElementById('fromCurrency').value;
@@ -53,11 +55,11 @@ function convertCurrency() {
         document.getElementById('errorText').textContent = ""; 
     }    
 
-    // Requête pour obtenir les taux de change
-    fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`)   
+    // Requête pour obtenir le taux de conversion
+    fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/${fromCurrency}`)
     .then(response => response.json())
     .then(data => {
-        const rate = data.rates[toCurrency];
+        const rate = data.conversion_rates[toCurrency]; 
 
         // Vérification du taux de conversion
         if (!rate) {
@@ -80,15 +82,5 @@ function convertCurrency() {
 function displayResults(amount, fromCurrency, convertedAmount, toCurrency) {
     const resultElement = document.getElementById('resultText');
     resultElement.textContent = `${amount} ${fromCurrency} équivaut à ${convertedAmount} ${toCurrency}`; 
+    document.getElementById('result').classList.add('show'); // Affiche le résultat
 }
-
-
-
-
-
-
-
-
-
-
-
