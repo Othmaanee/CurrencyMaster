@@ -4,11 +4,37 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            console.log('Taux de change récupérés', data.rates); // Correct ici
+            const currencies = Object.keys(data.rates);  // Récupère toutes les devises disponibles
+
+            const fromCurrencySelect = document.getElementById('fromCurrency');
+            const toCurrencySelect = document.getElementById('toCurrency');
+
+            currencies.forEach(currency => {
+                const optionFrom = document.createElement('option');
+                optionFrom.value = currency;
+                optionFrom.textContent = currency;
+                fromCurrencySelect.appendChild(optionFrom);
+
+                const optionTo = document.createElement('option');
+                optionTo.value = currency;
+                optionTo.textContent = currency;
+                toCurrencySelect.appendChild(optionTo);
+            });
         })
         .catch(error => {
             console.error('Erreur lors de la récupération des taux de change:', error);  
         });
+
+    // Sélectionne l'input et le bouton
+    const amountInput = document.getElementById('amount');
+    const convertButton = document.getElementById('convertButton');
+
+    // Détecte l'appui sur "Entrée" dans l'input
+    amountInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {  
+            convertButton.click();     
+        }
+    });
 });
 
 // Écouteur d'événement pour le bouton Convertir
@@ -21,19 +47,22 @@ function convertCurrency() {
 
     // Validation des entrées
     if (isNaN(amount) || amount <= 0) {
-        alert("Veuillez entrer un montant valide.");
+        document.getElementById('errorText').textContent = "Veuillez entrer un montant valide.";
         return;
-    }
+    } else {
+        document.getElementById('errorText').textContent = ""; 
+    }    
 
     // Requête pour obtenir les taux de change
     fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`)   
     .then(response => response.json())
     .then(data => {
         const rate = data.rates[toCurrency];
-        
+
         // Vérification du taux de conversion
         if (!rate) {
-            document.getElementById('result').textContent = "Taux de conversion non disponible.";
+            document.getElementById('resultText').textContent = "Taux de conversion non disponible."; 
+            document.getElementById('errorText').textContent = "Le taux de conversion entre ces devises n'est pas disponible."; 
             return;
         }
 
@@ -42,21 +71,11 @@ function convertCurrency() {
     }) 
     .catch(error => {
         console.error('Erreur', error);
-        document.getElementById('result').textContent = "Erreur lors de la récupération des taux de change.";
+        document.getElementById('resultText').textContent = "Erreur lors de la récupération des taux de change.";
+        document.getElementById('errorText').textContent = "Une erreur est survenue. Veuillez réessayer."; 
     });
 }
 
-    
-    
-  /*  if (exchangeRates && exchangeRates[fromCurrency] && exchangeRates[toCurrency]) {
-        const conversionRate = exchangeRates[toCurrency] / exchangeRates[fromCurrency]; // Calcul du taux de conversion
-        const convertedAmount = amount * conversionRate; // Effectue la conversion
-        document.getElementById('result').textContent = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`; // Affiche le résultat
-    } else {
-        document.getElementById('result').textContent = 'Erreur : Taux de change non disponible.';
-    }
-*/
-    
 // Appel de la fonction pour afficher les résultats
 function displayResults(amount, fromCurrency, convertedAmount, toCurrency) {
     const resultElement = document.getElementById('resultText');

@@ -3,46 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convertisseur de devises</title>
-    <link rel="stylesheet" href="styles.css">
-    <h1>CurrencyMaster</h1>
+    <title>Currency Master</title>
+    <link rel="stylesheet" href="styles.css">  
 </head>
 <body>
-
+    <h1>Currency Master</h1>
+    <h2>Convertisseur de devises</h2>
     
 
-    <div class="container">
-        <h1>Convertisseur de devises</h1>
-        
-        <div class="converter">
-            <input type="number" id="amount" placeholder="Montant à convertir">
-            
-            <div class="currency-select">
-                <label for="fromCurrency">De :</label>
-                <select id="fromCurrency" name="currency">
-                    <option value="EUR">Euro (EUR)</option>
-                    <option value="USD">Dollar américain (USD)</option>
-                    <option value="GBP">Livre Sterling (GBP)</option>
-                    <!-- Ajoute d'autres devises ici -->
-                </select>
+<div class="container">
+    <div class="converter">
+        <input type="number" id="amount" placeholder="Montant à convertir" aria-label="Montant à convertir">
+        <div class="error-message" id="errorText"></div>
+        <div class="currency-select">
+            <label for="fromCurrency">De</label>
+            <select id="fromCurrency"></select>
 
-                <label for="toCurrency">Vers :</label>
-                <select id="toCurrency">
-                    <option value="USD">Dollar américain (USD)</option>
-                    <option value="EUR">Euro (EUR)</option>
-                    <option value="GBP">Livre Sterling (GBP)</option>
-                    <!-- Ajoute d'autres devises ici -->
-                </select>
-
-            </div>
-
-            <button id="convertButton">Convertir</button>
-
-            <div class="result">
-                <h2 id="resultText">Résultat : --</h2>
-            </div>
+            <label for="toCurrency">Vers</label>
+            <select id="toCurrency"></select>
+        </div>
+        <button id="convertButton">Convertir</button>
+        <div class="result" id="result">
+            <h2 id="resultText"></h2>
         </div>
     </div>
+</div>
 
     <script src="script.js" defer></script>
 
