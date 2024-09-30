@@ -148,8 +148,45 @@ button:active {
     margin-top: 10px;
 }
 
+/* Mobile styles */
 @media (max-width: 600px) {
-    .converter {
-        width: 90%;
+    body {
+        padding: 20px; /* Réduire le padding sur les petits écrans */
+    }
+
+    .container {
+        width: 100%; /* Utiliser toute la largeur sur mobile */
+        padding: 20px; /* Réduire le padding */
+    }
+
+    h1 {
+        font-size: 36px; /* Réduire la taille du titre principal */
+    }
+
+    h2 {
+        font-size: 18px; /* Réduire la taille du sous-titre */
+    }
+
+    .currency-select {
+        flex-direction: column; /* Afficher les sélecteurs de devise en colonne */
+    }
+
+    select {
+        width: 100%; /* Utiliser toute la largeur pour les sélecteurs sur mobile */
+        margin-bottom: 10px; /* Ajouter de l'espace entre les sélecteurs */
+    }
+
+    button {
+        font-size: 16px; /* Réduire la taille du texte du bouton */
+        padding: 10px; /* Réduire le padding du bouton */
+    }
+
+    input[type="number"] {
+        font-size: 16px; /* Réduire la taille de la police dans l'input */
+        padding: 10px; /* Réduire le padding de l'input */
+    }
+
+    .result {
+        font-size: 20px; /* Réduire la taille de la police dans les résultats */
     }
 }
