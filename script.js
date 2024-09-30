@@ -1,15 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     const apiKey = '337159cefa16dbefb4277093'; 
     const apiUrl = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`;
+
+    // Liste des 20 devises les plus populaires
+    const popularCurrencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD', 'DZD', 'SAR'];
+
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             const currencies = Object.keys(data.conversion_rates); 
 
+            // Ne garder que les devises présentes dans le tableau `popularCurrencies`
+            const filteredCurrencies = currencies.filter(currency => popularCurrencies.includes(currency));
+
             const fromCurrencySelect = document.getElementById('fromCurrency');
             const toCurrencySelect = document.getElementById('toCurrency');
 
-            currencies.forEach(currency => {
+            // Ajouter les options filtrées
+            filteredCurrencies.forEach(currency => {
                 const optionFrom = document.createElement('option');
                 optionFrom.value = currency;
                 optionFrom.textContent = currency;
@@ -25,17 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Erreur lors de la récupération des taux de change:', error);  
         });
 
-    // Sélectionne l'input et le bouton
+    // Reste du code inchangé
     const amountInput = document.getElementById('amount');
     const convertButton = document.getElementById('convertButton');
 
-    // Détecte l'appui sur "Entrée" dans l'input
     amountInput.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {  
             convertButton.click();     
         }
     });
 });
+
 
 // Écouteur d'événement pour le bouton Convertir
 document.getElementById('convertButton').addEventListener('click', convertCurrency);
