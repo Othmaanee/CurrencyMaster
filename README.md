@@ -27,3 +27,7 @@ Currency Master est une application web simple et intuitive qui permet de conver
 1. Clonez le dépôt sur votre machine locale :
    ```bash
    git clone https://github.com/votre-utilisateur/currency-master.git
+
+## Auteur
+
+Othmane TADJOURI | tadjouriothmane@gmail.com
