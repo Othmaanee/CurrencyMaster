@@ -71,6 +71,7 @@ input[type="number"]:focus {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
 }
 
 label {
@@ -88,6 +89,7 @@ select {
     transition: border-color 0.3s ease;
     background-color: #fff; 
     color: #333;
+    z-index: 10;
 }
 
 select:focus {
